@@ -15,10 +15,13 @@ class MediaController < ApplicationController
   # GET /media/new
   def new
     @medium = Medium.new
+    @markets = Market.all
   end
 
   # GET /media/1/edit
   def edit
+    @medium = Medium.find(params[:id])
+    @markets = Market.all
   end
 
   # POST /media
@@ -34,6 +37,9 @@ class MediaController < ApplicationController
         format.html { render :new }
         format.json { render json: @medium.errors, status: :unprocessable_entity }
       end
+    end
+    def medium_params
+      params.require(:media).permit(:title, :description, :media_type, :market_id, :media_target, :media_reach, :media_url)
     end
   end
 
@@ -69,6 +75,6 @@ class MediaController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def medium_params
-      params.require(:medium).permit(:title, :description, :media_type, :media_target, :media_reach, :media_url)
+      params.require(:medium).permit(:title, :description, :media_type, :market_id, :media_target, :media_reach, :media_url)
     end
 end
