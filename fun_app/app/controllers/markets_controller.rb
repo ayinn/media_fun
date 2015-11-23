@@ -4,7 +4,8 @@ class MarketsController < ApplicationController
   # GET /markets
   # GET /markets.json
   def index
-    @markets = Market.all
+   @markets = Market.all
+    
   end
 
   # GET /markets/1
@@ -69,6 +70,6 @@ class MarketsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def market_params
-      params.require(:market).permit(:name)
+      params.require(:market).permit(:id, :name)
     end
 end

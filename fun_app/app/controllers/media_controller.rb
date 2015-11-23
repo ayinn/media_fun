@@ -10,6 +10,7 @@ class MediaController < ApplicationController
   # GET /media/1
   # GET /media/1.json
   def show
+    @medium = Medium.find(params[:id])
   end
 
   # GET /media/new
@@ -18,6 +19,10 @@ class MediaController < ApplicationController
     @markets = Market.all
   end
 
+  #added params here as well as it is at bottom
+  def medium_params
+      params.require(:medium).permit(:title, :description, :media_type, :market_id, :media_target, :media_reach, :media_url)
+    end
   # GET /media/1/edit
   def edit
     @medium = Medium.find(params[:id])
@@ -34,11 +39,12 @@ class MediaController < ApplicationController
         format.html { redirect_to @medium, notice: 'Medium was successfully created.' }
         format.json { render :show, status: :created, location: @medium }
       else
+        @markets = Market.all
         format.html { render :new }
         format.json { render json: @medium.errors, status: :unprocessable_entity }
       end
     end
-    def medium_params
+    def medium_param
       params.require(:media).permit(:title, :description, :media_type, :market_id, :media_target, :media_reach, :media_url)
     end
   end
@@ -46,11 +52,13 @@ class MediaController < ApplicationController
   # PATCH/PUT /media/1
   # PATCH/PUT /media/1.json
   def update
+    @medium = Medium.find(param[:id])
     respond_to do |format|
-      if @medium.update(medium_params)
+      if @medium.update_attributes(medium_params)
         format.html { redirect_to @medium, notice: 'Medium was successfully updated.' }
         format.json { render :show, status: :ok, location: @medium }
       else
+        @markets = Market.all
         format.html { render :edit }
         format.json { render json: @medium.errors, status: :unprocessable_entity }
       end
@@ -71,10 +79,14 @@ class MediaController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_medium
       @medium = Medium.find(params[:id])
+      @market = Market.all
     end
+  def show_markets
+    @market = Market.find(params[:id])
+  end
 
     # Never trust parameters from the scary internet, only allow the white list through.
-    def medium_params
-      params.require(:medium).permit(:title, :description, :media_type, :market_id, :media_target, :media_reach, :media_url)
-    end
+    #def medium_params
+   #   params.require(:medium).permit(:title, :description, :media_type, :market_id, :media_target, :media_reach, :media_url)
+    #end
 end
