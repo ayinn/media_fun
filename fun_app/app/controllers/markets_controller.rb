@@ -5,7 +5,7 @@ class MarketsController < ApplicationController
   # GET /markets.json
   def index
    @markets = Market.all
-    
+
   end
 
   # GET /markets/1
@@ -64,12 +64,14 @@ class MarketsController < ApplicationController
 
   private
     # Use callbacks to share common setup or constraints between actions.
-    def set_market
-      @market = Market.find(params[:id])
+  def set_market
+    @market = Market.find(params[:id])
+
     end
+ 
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def market_params
-      params.require(:market).permit(:id, :name)
+      params.require(:market).permit(:name)
     end
 end

@@ -21,7 +21,7 @@ class MediaController < ApplicationController
 
   #added params here as well as it is at bottom
   def medium_params
-      params.require(:medium).permit(:title, :description, :media_type, :market_id, :media_target, :media_reach, :media_url)
+    params.require(:medium).permit(:title, :description, :media_type, :market_id, :market_name, :media_target, :media_reach, :media_url)
     end
   # GET /media/1/edit
   def edit
@@ -45,7 +45,7 @@ class MediaController < ApplicationController
       end
     end
     def medium_param
-      params.require(:media).permit(:title, :description, :media_type, :market_id, :media_target, :media_reach, :media_url)
+      params.require(:media).permit(:title, :description, :media_type, :market_id, :market_name, :media_target, :media_reach, :media_url)
     end
   end
 
@@ -82,11 +82,11 @@ class MediaController < ApplicationController
       @market = Market.all
     end
   def show_markets
-    @market = Market.find(params[:id])
+    @market = Market.find(params[:id, :name])
   end
 
     # Never trust parameters from the scary internet, only allow the white list through.
-    #def medium_params
-   #   params.require(:medium).permit(:title, :description, :media_type, :market_id, :media_target, :media_reach, :media_url)
-    #end
+    def medium_params
+      params.require(:medium).permit(:title, :description, :media_type, :market_id, :market_name, :media_target, :media_reach, :media_url)
+    end
 end

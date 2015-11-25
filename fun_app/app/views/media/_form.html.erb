@@ -23,8 +23,8 @@
     <%= f.label :media_type %><br>
     <%= f.text_field :media_type %>
   </div>
-<div class="field">
-  <%= f.label :market_id %><br>
+  <div class="field">
+  <%= f.label :market_name %><br>
   <%= f.collection_select :market_id, Market.all, :id, :name %>
   </div>
   <div class="field">
