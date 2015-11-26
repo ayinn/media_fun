@@ -10,7 +10,7 @@ class MediaController < ApplicationController
   # GET /media/1
   # GET /media/1.json
   def show
-    @medium = Medium.find(params[:id])
+@medium = Medium.find(params[:id])
   end
 
   # GET /media/new
@@ -21,7 +21,7 @@ class MediaController < ApplicationController
 
   #added params here as well as it is at bottom
   def medium_params
-    params.require(:medium).permit(:title, :description, :media_type, :market_id, :market_name, :media_target, :media_reach, :media_url)
+    params.require(:medium).permit(:title, :description, :media_type, :market_id, :media_target, :media_reach, :media_url)
     end
   # GET /media/1/edit
   def edit
@@ -33,7 +33,6 @@ class MediaController < ApplicationController
   # POST /media.json
   def create
     @medium = Medium.new(medium_params)
-
     respond_to do |format|
       if @medium.save
         format.html { redirect_to @medium, notice: 'Medium was successfully created.' }
@@ -44,21 +43,17 @@ class MediaController < ApplicationController
         format.json { render json: @medium.errors, status: :unprocessable_entity }
       end
     end
-    def medium_param
-      params.require(:media).permit(:title, :description, :media_type, :market_id, :market_name, :media_target, :media_reach, :media_url)
-    end
   end
 
   # PATCH/PUT /media/1
   # PATCH/PUT /media/1.json
   def update
-    @medium = Medium.find(param[:id])
+    @medium = Medium.find(params[:id])
     respond_to do |format|
-      if @medium.update_attributes(medium_params)
+      if @medium.update(medium_params)
         format.html { redirect_to @medium, notice: 'Medium was successfully updated.' }
         format.json { render :show, status: :ok, location: @medium }
       else
-        @markets = Market.all
         format.html { render :edit }
         format.json { render json: @medium.errors, status: :unprocessable_entity }
       end
@@ -87,6 +82,6 @@ class MediaController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def medium_params
-      params.require(:medium).permit(:title, :description, :media_type, :market_id, :market_name, :media_target, :media_reach, :media_url)
+      params.require(:medium).permit(:title, :description, :media_type, :market_id, :media_target, :media_reach, :media_url)
     end
 end

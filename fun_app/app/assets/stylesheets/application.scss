@@ -17,11 +17,49 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 @import "bootstrap/variables";
+@import url(https://fonts.googleapis.com/css?family=Gloria+Hallelujah);
 
 body {
   padding-top: 50px;
+  background-color:#faf2db;
+ /*background: #ffffff url(nitrou-bg.jpg) 50% 0% no-repeat;*/
 }
 .starter-template {
   padding: 40px 15px;
   text-align: center;
+  background-color: #d9fdb7;
 }
+
+.selector {
+  @include box-shadow(#{0 2px 5px rgba(0,0,0,.25) inset, 0 -2px 5px rgba(0,0,0,.25) inset});
+}
+h1, h2 {
+  font-family: 'Gloria Hallelujah', cursive;
+  color: #ff5400;
+}
+.about {
+  width: 100%;
+  background: transparent;
+  text-align: center;
+  /*padding-top: 185px;*/ }
+
+@media screen and (max-width: 550px) {
+    .about {
+      padding-top: 0px;
+    text-align: center;} }
+
+   @media screen and (max-width: 550px) {
+        .about div h2 {
+          margin: 0 auto 25px; } }
+
+    .about div .about-motto {
+      margin: 90px auto 125px;
+      width: 65%; }
+
+   @media screen and (max-width: 750px) {
+        .about div .about-motto {
+          width: 75%; } }
+
+   @media screen and (max-width: 550px) {
+        .about div .about-motto {
+          margin: 25px auto 50px; } }
