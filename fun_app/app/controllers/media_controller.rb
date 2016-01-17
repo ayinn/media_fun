@@ -11,6 +11,7 @@ class MediaController < ApplicationController
   # GET /media/1.json
   def show
 @medium = Medium.find(params[:id])
+  @market = Market.find(@medium.market_id)
   end
 
   # GET /media/new
